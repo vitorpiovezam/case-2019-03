@@ -54,7 +54,7 @@ export class Medicine extends EntityBase {
   @Column()
   MIP: boolean;
 
-  @Column()
+  @Column({ type: "text"})
   Label: string;
 
   @Column({ nullable: true })
@@ -64,7 +64,6 @@ export class Medicine extends EntityBase {
     super();
     Object.assign(this, data);
 
-    delete this.Label;
     if (data?.Farmacos) this.Farmacos = Array(data.Farmacos).join(',');
   }
 }
