@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
+    "install": "concurrently \"cd front/ && npm i\" \"cd back/ && npm i\"",
     "start:api": "cd back/ && npm run start",
     "start:front": "cd front/ && wait-on tcp:8080 && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
