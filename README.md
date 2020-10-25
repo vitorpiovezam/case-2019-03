@@ -1,4 +1,4 @@
-# Vita Test
+# Vitta Test
 
 This project is a code test for [Vitta](https://vitta.com.br/) company.
 
@@ -8,7 +8,7 @@ This project is a code test for [Vitta](https://vitta.com.br/) company.
 
 ## Front End
 
-Nuxt.js application with lists and info about medicines appliements.
+Nuxt.js SPA with lists and info about medicines appliements.
 
 ## Back End
 
@@ -16,20 +16,22 @@ NestJs application with Docker and MySQL. This REST API bulks data to db and fee
 
 ## How to Run
 
-You need to have [Docker](https://www.docker.com/), [NPM](https://www.npmjs.com/) and [NodeJS](https://nodejs.org/en/) property installed on machine.
+You need to have [NPM](https://www.npmjs.com/) and [NodeJS](https://nodejs.org/en/) property installed on machine.
+[Docker](https://www.docker.com/) needs to be installed and running.
 
-**Install all depedencies**
+### Install all depedencies
 
 ```bash
 npm run install
 ```
 
-**Run 🔥**
+### Run 🔥
 
 ```bash
 npm run start
 ```
 
-Back-end waits for database, front-end waits back-end, logic for correct initialization all maded ✨.
+Logic for correct initialization all maded ✨
+The api waits for database to start and the front-end waits api (thanks [wait-on](https://www.npmjs.com/package/wait-on))
 
-Front will start at **:3000**, back end at **:8080** and db in **3306**.
+Front will start at [**:3000**](http://locahost:3000), back end at **:8080** and db in **3306**
