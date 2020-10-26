@@ -6,7 +6,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { Medicine } from './entities/medicine.entity';
-import * as medicamentosRaw from 'src/dados/medicamentos.json';
+import * as medicamentosRaw from 'src/data/medicamentos.json';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   paginate,
