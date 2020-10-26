@@ -1,75 +1,110 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        front
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div v-bind:class="{  }" class="container --light-theme">
+    <header>
+      <span> Vitta Test </span>
+      <span> Maded with 💞 by <a href="http://github.com/vitorpiovezam" target="_blank" rel="noreferrer">Vitor Piovezam</a> </span>
+    </header>
+    <h1>Atendimentos e prescriçōes</h1>
+    <p class="summary">
+      <strong>Olá Vitor :)</strong>
+      <span v-if="totalMedicines > 0"><br> Já são {{ totalMedicines }} medicamentos e 789 interaçōes médicas régistradas na base 🎉 </span>
+    </p>
+    <main>
+      <div>
+        <h2>Medicamentos</h2>
+      <p>
+        <Medicines></Medicines>
+      </p>
       </div>
-    </div>
+
+      <div>
+        <h2>Receitas</h2>
+        <div>
+          Soon
+        </div>
+      </div>
+    </main>
+    <footer>
+      
+    </footer>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+  import Vue from 'vue'
+  import axios from 'axios';
 
-export default Vue.extend({})
+  const theme = window.sessionStorage.getItem('darkTheme');
+  const darkTheme: boolean =  Boolean(theme) || false;
+
+  export default Vue.extend({
+    data () {
+      return {
+        totalMedicines: 0,
+        darkTheme: false
+      }
+    },
+    mounted () {
+      if (!process.env.API_URL) return;
+
+      axios
+        .get(`${process.env.API_URL}/medicine?limit=50&page=1`)
+        .then(response => (this.totalMedicines = response.data.meta.totalItems))
+      }
+  })
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style lang="scss">
+  body {
+    margin: 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  header {
+    display: flex;
+    justify-content: space-between;
+    line-height: 25px;
+    padding: 0 10px;
+    border: 1px solid;
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
 
-.links {
-  padding-top: 15px;
-}
+    &.--light-theme {
+      background: whitesmoke;
+      color: black;
+    }
+
+    &.--dark-theme {
+      background: #292929;
+      color: white;
+
+      a {
+        color: aquamarine;
+      }
+    }
+
+    .summary {
+      margin-top: 0;
+
+      strong {
+        font-size: 1.1em;
+      }
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+
+    p {
+      line-break: anywhere;
+    }
+  }
 </style>
